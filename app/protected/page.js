@@ -10,14 +10,23 @@ export default function Protected() {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationType, setNotificationType] = useState('success');
   const [notificationMessage, setNotificationMessage] = useState('');
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    validateApiKey();
-  }, [validateApiKey]);
+  const showNotificationMessage = (type, message) => {
+    setNotificationType(type);
+    setNotificationMessage(message);
+    setShowNotification(true);
+  };
 
   const validateApiKey = useCallback(async () => {
     try {
+      // Check if we're in the browser environment
+      if (typeof window === 'undefined') {
+        setIsValidating(false);
+        return;
+      }
+
       // Get the API key from localStorage
       const submittedApiKey = localStorage.getItem('submittedApiKey');
       
@@ -54,23 +63,32 @@ export default function Protected() {
     }
   }, []);
 
-  const showNotificationMessage = (type, message) => {
-    setNotificationType(type);
-    setNotificationMessage(message);
-    setShowNotification(true);
-  };
+  // Ensure we're on the client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      validateApiKey();
+    }
+  }, [validateApiKey, isClient]);
 
   const handleBackToPlayground = () => {
-    localStorage.removeItem('submittedApiKey');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('submittedApiKey');
+    }
     router.push('/playground');
   };
 
-  if (isValidating) {
+  if (!isClient || isValidating) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Validating API key...</p>
+          <p className="mt-4 text-gray-600">
+            {!isClient ? 'Loading...' : 'Validating API key...'}
+          </p>
         </div>
       </div>
     );

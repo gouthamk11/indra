@@ -30,7 +30,9 @@ export default function Playground() {
 
       if (response.ok && data.valid) {
         // Valid API key - store it and redirect to protected page
-        localStorage.setItem('submittedApiKey', apiKey);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('submittedApiKey', apiKey);
+        }
         router.push('/protected');
       } else {
         // Invalid API key - show error notification

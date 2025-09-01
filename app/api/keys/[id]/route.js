@@ -11,7 +11,7 @@ export async function PUT(request, { params }) {
       }, { status: 503 })
     }
 
-    const { id } = params
+    const { id } = await params
     const body = await request.json()
     const { name, type, monthlyLimit } = body
 
@@ -50,7 +50,7 @@ export async function DELETE(request, { params }) {
       }, { status: 503 })
     }
 
-    const { id } = params
+    const { id } = await params
 
     const { error } = await supabase
       .from('api_keys')
