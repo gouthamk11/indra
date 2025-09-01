@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Notification from '../../components/Notification';
 
@@ -14,9 +14,9 @@ export default function Protected() {
 
   useEffect(() => {
     validateApiKey();
-  }, []);
+  }, [validateApiKey]);
 
-  const validateApiKey = async () => {
+  const validateApiKey = useCallback(async () => {
     try {
       // Get the API key from localStorage
       const submittedApiKey = localStorage.getItem('submittedApiKey');
@@ -52,7 +52,7 @@ export default function Protected() {
     } finally {
       setIsValidating(false);
     }
-  };
+  }, []);
 
   const showNotificationMessage = (type, message) => {
     setNotificationType(type);

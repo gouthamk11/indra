@@ -97,7 +97,7 @@ export default function Playground() {
 
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-500">
-            Don't have an API key?{' '}
+            Don&apos;t have an API key?{' '}
             <a href="/dashboards" className="text-blue-600 hover:text-blue-800">
               Create one in the dashboard
             </a>

@@ -145,7 +145,7 @@ export default function ApiKeyModal({
 
             <div className="mb-6">
               <p className="text-xs text-gray-500">
-                * If the combined usage of all your keys exceeds your plan's limit, all requests will be rejected.
+                * If the combined usage of all your keys exceeds your plan&apos;s limit, all requests will be rejected.
               </p>
             </div>
 
