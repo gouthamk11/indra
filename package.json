@@ -3,16 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "yarn next dev --turbopack",
+    "build": "yarn next build --turbopack",
+    "start": "yarn next start",
+    "lint": "yarn eslint"
   },
   "dependencies": {
+    "@langchain/community": "^0.3.54",
+    "@langchain/core": "^0.3.73",
+    "@langchain/langgraph": "^0.4.9",
     "@supabase/supabase-js": "^2.56.1",
+    "langchain": "^0.3.32",
     "next": "15.5.2",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
