@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "yarn next dev --turbopack",
-    "build": "yarn next build --turbopack",
-    "start": "yarn next start",
-    "lint": "yarn eslint"
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation yarn next dev --turbopack",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation yarn next build --turbopack",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation yarn next start",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation yarn eslint"
   },
   "dependencies": {
     "@langchain/community": "^0.3.54",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "cross-env": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
     "tailwindcss": "^4"

@@ -29,18 +29,21 @@ export default function Home() {
         {isAuthenticated ? (
           <div className="bg-green-50 border border-green-200 rounded-lg p-6 w-full max-w-md">
             <div className="flex items-center space-x-3 mb-4">
-              {user?.image && (
+              {user?.image ? (
                 <img
                   src={user.image}
-                  alt={user.name}
-                  className="w-10 h-10 rounded-full"
+                  alt={user.name || 'User'}
+                  className="w-10 h-10 rounded-full object-cover"
                 />
+              ) : (
+                <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-medium">
+                  {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+                </div>
               )}
               <div>
                 <h3 className="text-lg font-semibold text-green-800">
-                  Welcome, {user?.name}!
+                  Welcome, {user?.name || 'User'}!
                 </h3>
-                <p className="text-sm text-green-600">{user?.email}</p>
               </div>
             </div>
             <button

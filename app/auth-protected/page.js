@@ -34,26 +34,28 @@ export default function AuthProtected() {
           Welcome to the authentication protected area!
         </h2>
         <p className="text-green-700">
-          You are successfully authenticated as <strong>{user?.name}</strong> ({user?.email})
+          You are successfully authenticated as <strong>{user?.name}</strong>
         </p>
       </div>
       <div className="bg-white border border-gray-200 rounded-lg p-6">
         <h3 className="text-lg font-semibold mb-4">User Information</h3>
         <div className="space-y-2">
           <p><strong>Name:</strong> {user?.name}</p>
-          <p><strong>Email:</strong> {user?.email}</p>
-          <p><strong>Image:</strong> {user?.image ? 'Available' : 'Not available'}</p>
         </div>
-        {user?.image && (
-          <div className="mt-4">
-            <p className="font-medium mb-2">Profile Picture:</p>
+        <div className="mt-4">
+          <p className="font-medium mb-2">Profile Picture:</p>
+          {user?.image ? (
             <img
               src={user.image}
-              alt={user.name}
-              className="w-20 h-20 rounded-full"
+              alt={user.name || 'User'}
+              className="w-20 h-20 rounded-full object-cover"
             />
-          </div>
-        )}
+          ) : (
+            <div className="w-20 h-20 rounded-full bg-blue-500 text-white flex items-center justify-center text-2xl font-medium">
+              {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
