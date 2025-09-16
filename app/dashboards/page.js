@@ -76,7 +76,7 @@ export default function Dashboard() {
       
       {/* Main Content */}
       <div className={`flex-1 transition-all duration-300 ease-in-out ${sidebarOpen ? 'ml-64' : 'ml-0'}`}>
-        <Header />
+        <Header toggleSidebar={toggleSidebar} />
         
         {/* Content Area */}
         <div className="p-6">
