@@ -4,7 +4,7 @@ import { useApiKeys } from '../../hooks/useApiKeys';
 import { useSidebar } from '../../hooks/useSidebar';
 import { useApiKeyModal } from '../../hooks/useApiKeyModal';
 import Sidebar from '../../components/Sidebar';
-import Header from '../../components/Header';
+import { Header } from '../../components/header';
 import PlanCard from '../../components/PlanCard';
 import ApiKeysTable from '../../components/ApiKeysTable';
 import ApiKeyModal from '../../components/ApiKeyModal';
@@ -76,7 +76,7 @@ export default function Dashboard() {
       
       {/* Main Content */}
       <div className={`flex-1 transition-all duration-300 ease-in-out ${sidebarOpen ? 'ml-64' : 'ml-0'}`}>
-        <Header toggleSidebar={toggleSidebar} />
+        <Header />
         
         {/* Content Area */}
         <div className="p-6">
