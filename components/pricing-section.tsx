@@ -73,7 +73,10 @@ export function PricingSection() {
               className={`relative border-border ${plan.popular ? "border-primary shadow-lg scale-105" : ""}`}
             >
               {plan.popular && (
-                <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
+                <Badge
+                  variant="default"
+                  className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground"
+                >
                   <Star className="mr-1 h-3 w-3" />
                   Most Popular
                 </Badge>
@@ -101,6 +104,7 @@ export function PricingSection() {
                 <Button
                   className={`w-full ${plan.popular ? "bg-primary text-primary-foreground hover:bg-primary/90" : ""}`}
                   variant={plan.popular ? "default" : "outline"}
+                  size="lg"
                 >
                   {plan.cta}
                 </Button>

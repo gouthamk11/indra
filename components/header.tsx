@@ -89,6 +89,7 @@ export function Header() {
                 Login
               </Button>
               <Button 
+                variant="default"
                 size="sm" 
                 className="bg-primary text-primary-foreground hover:bg-primary/90"
                 onClick={() => login('google')}
