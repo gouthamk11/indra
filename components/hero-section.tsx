@@ -22,11 +22,19 @@ export function HeroSection() {
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button
+              variant="default"
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+            >
               Start analyzing
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button variant="outline" size="lg">
+            <Button
+              variant="outline"
+              size="lg"
+              className=""
+            >
               View demo
             </Button>
           </div>
