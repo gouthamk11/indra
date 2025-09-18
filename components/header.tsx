@@ -1,19 +1,29 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
-import { Github, Menu, LogOut } from "lucide-react"
+import { Github, Menu, LogOut, X } from "lucide-react"
 import Link from "next/link"
 import { useAuth } from "@/hooks/useAuth"
+import { useState } from "react"
 
 export function Header() {
   const { user, isAuthenticated, isLoading, login, logout } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center space-x-2">
-          <Github className="h-8 w-8 text-primary" />
-          <span className="text-xl font-bold text-foreground">Indra GitHub Analyzer</span>
+          <Github className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+          <span className="text-lg sm:text-xl font-bold text-foreground">Indra GitHub Analyzer</span>
         </div>
 
         <nav className="hidden md:flex items-center space-x-6">
@@ -37,13 +47,13 @@ export function Header() {
           </Link>
         </nav>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2 sm:space-x-3">
           {isLoading ? (
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
           ) : isAuthenticated ? (
-            <div className="flex items-center space-x-3">
-              {/* User Info */}
-              <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              {/* User Info - Hidden on mobile */}
+              <div className="hidden sm:flex items-center space-x-2">
                 {user?.image ? (
                   <img
                     src={user.image}
@@ -66,13 +76,18 @@ export function Header() {
                   Dashboard
                 </Button>
               </Link>
+              <Link href="/playground">
+                <Button variant="ghost" size="sm" className="hidden md:inline-flex">
+                  API Playground
+                </Button>
+              </Link>
               
               {/* Logout Button */}
               <Button 
                 variant="ghost" 
                 size="sm" 
                 onClick={logout}
-                className="flex items-center space-x-1"
+                className="hidden sm:flex items-center space-x-1"
               >
                 <LogOut className="h-4 w-4" />
                 <span className="hidden md:inline">Logout</span>
@@ -91,7 +106,7 @@ export function Header() {
               <Button 
                 variant="default"
                 size="sm" 
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 hidden sm:inline-flex"
                 onClick={() => login('google')}
               >
                 Sign Up
@@ -99,11 +114,126 @@ export function Header() {
             </>
           )}
           
-          <Button variant="ghost" size="sm" className="md:hidden">
-            <Menu className="h-4 w-4" />
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="md:hidden"
+            onClick={toggleMobileMenu}
+          >
+            {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </Button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="container mx-auto px-4 py-4 space-y-4">
+            {/* Mobile Navigation Links */}
+            <nav className="space-y-3">
+              <Link
+                href="#features"
+                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Features
+              </Link>
+              <Link
+                href="#pricing"
+                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Pricing
+              </Link>
+              <Link
+                href="#docs"
+                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Docs
+              </Link>
+            </nav>
+
+            {/* Mobile Auth Section */}
+            {isAuthenticated ? (
+              <div className="space-y-3 pt-4 border-t border-border">
+                {/* User Info */}
+                <div className="flex items-center space-x-3">
+                  {user?.image ? (
+                    <img
+                      src={user.image}
+                      alt={user.name || 'User'}
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
+                      {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+                    </div>
+                  )}
+                  <div>
+                    <div className="text-sm font-medium text-foreground">
+                      {user?.name || 'User'}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      {user?.email}
+                    </div>
+                  </div>
+                </div>
+                
+                <Link href="/dashboards" onClick={closeMobileMenu}>
+                  <Button variant="outline" size="sm" className="w-full">
+                    Dashboard
+                  </Button>
+                </Link>
+                
+                <Link href="/playground" onClick={closeMobileMenu}>
+                  <Button variant="outline" size="sm" className="w-full">
+                    API Playground
+                  </Button>
+                </Link>
+                
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => {
+                    logout();
+                    closeMobileMenu();
+                  }}
+                  className="w-full"
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-3 pt-4 border-t border-border">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full"
+                  onClick={() => {
+                    login('google');
+                    closeMobileMenu();
+                  }}
+                >
+                  Login
+                </Button>
+                <Button 
+                  variant="default"
+                  size="sm" 
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  onClick={() => {
+                    login('google');
+                    closeMobileMenu();
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   )
 }

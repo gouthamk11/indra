@@ -10,7 +10,7 @@ export default function Sidebar({ sidebarOpen, closeSidebar }) {
       )}
       
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} w-64 bg-white border-r border-gray-200 fixed h-full z-30 transition-transform duration-300 ease-in-out`}>
+      <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} w-64 bg-white border-r border-gray-200 fixed h-full z-30 transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:z-auto`}>
         <div className="p-6">
           {/* Logo and Close Button */}
           <div className="flex items-center justify-between mb-8">

@@ -49,35 +49,35 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="py-20 bg-muted/30">
+    <section id="features" className="py-12 sm:py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
+        <div className="mx-auto max-w-2xl text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground text-balance">
             Everything you need to understand your repositories
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground text-pretty">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-muted-foreground text-pretty px-4 sm:px-0">
             Comprehensive analytics and insights for open source projects, all in one powerful dashboard.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
             <Card key={index} className="border-border bg-card hover:shadow-lg transition-shadow">
               <CardHeader className="">
                 <div className="flex items-center justify-between mb-2">
                   <div className="rounded-lg bg-primary/10 p-2">
-                    <feature.icon className="h-6 w-6 text-primary" />
+                    <feature.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <Badge variant="secondary" className="text-xs">
                     {feature.badge}
                   </Badge>
                 </div>
-                <CardTitle className="text-xl text-card-foreground" >
+                <CardTitle className="text-lg sm:text-xl text-card-foreground" >
                   {feature.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="">
-                <CardDescription className="text-muted-foreground leading-relaxed" {...{}}>
+                <CardDescription className="text-muted-foreground leading-relaxed text-sm sm:text-base" {...{}}>
                   {feature.description}
                 </CardDescription>
               </CardContent>
@@ -85,19 +85,19 @@ export function FeaturesSection() {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-6 rounded-lg bg-card border border-border p-6">
+        <div className="mt-12 sm:mt-16 text-center">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 rounded-lg bg-card border border-border p-4 sm:p-6">
             <div className="flex items-center gap-2">
-              <Eye className="h-5 w-5 text-primary" />
-              <span className="text-sm font-medium text-card-foreground">Real-time insights</span>
+              <Eye className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+              <span className="text-xs sm:text-sm font-medium text-card-foreground">Real-time insights</span>
             </div>
             <div className="flex items-center gap-2">
-              <Clock className="h-5 w-5 text-primary" />
-              <span className="text-sm font-medium text-card-foreground">Historical data</span>
+              <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+              <span className="text-xs sm:text-sm font-medium text-card-foreground">Historical data</span>
             </div>
             <div className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-primary" />
-              <span className="text-sm font-medium text-card-foreground">Team collaboration</span>
+              <Users className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+              <span className="text-xs sm:text-sm font-medium text-card-foreground">Team collaboration</span>
             </div>
           </div>
         </div>

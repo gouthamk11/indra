@@ -53,7 +53,7 @@ export default function Playground() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       {/* Notification */}
       {showNotification && (
         <Notification
@@ -63,13 +63,13 @@ export default function Playground() {
         />
       )}
 
-      <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">API Playground</h1>
-          <p className="text-gray-600">Enter your API key to test the Research API</p>
+      <div className="max-w-md w-full bg-white rounded-lg shadow-md p-6 sm:p-8">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">API Playground</h1>
+          <p className="text-sm sm:text-base text-gray-600">Enter your API key to test the Research API</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div>
             <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700 mb-2">
               API Key
@@ -79,11 +79,11 @@ export default function Playground() {
               id="apiKey"
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
               placeholder="Enter your API key"
               required
             />
-            <p className="mt-2 text-sm text-gray-500">
+            <p className="mt-2 text-xs sm:text-sm text-gray-500">
               Your API key will be validated on the next page
             </p>
           </div>
@@ -91,14 +91,14 @@ export default function Playground() {
           <button
             type="submit"
             disabled={isSubmitting || !apiKey.trim()}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
             {isSubmitting ? 'Submitting...' : 'Submit API Key'}
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-500">
+        <div className="mt-4 sm:mt-6 text-center">
+          <p className="text-xs sm:text-sm text-gray-500">
             Don&apos;t have an API key?{' '}
             <a href="/dashboards" className="text-blue-600 hover:text-blue-800">
               Create one in the dashboard
