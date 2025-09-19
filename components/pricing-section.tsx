@@ -15,8 +15,9 @@ const plans = [
       "Weekly email reports",
       "Community support",
     ],
-    popular: false,
+    popular: true,
     cta: "Get started free",
+    comingSoon: false,
   },
   {
     name: "Pro",
@@ -31,8 +32,9 @@ const plans = [
       "Priority support",
       "API access",
     ],
-    popular: true,
+    popular: false,
     cta: "Start free trial",
+    comingSoon: true,
   },
   {
     name: "Enterprise",
@@ -50,6 +52,7 @@ const plans = [
     ],
     popular: false,
     cta: "Contact sales",
+    comingSoon: true,
   },
 ]
 
@@ -82,6 +85,15 @@ export function PricingSection() {
                 </Badge>
               )}
 
+              {plan.comingSoon && (
+                <Badge
+                  variant="secondary"
+                  className="absolute -top-3 -right-3 bg-muted text-muted-foreground border border-border"
+                >
+                  Coming Soon
+                </Badge>
+              )}
+
               <CardHeader className="text-center pb-6 sm:pb-8">
                 <CardTitle className="text-xl sm:text-2xl text-card-foreground">{plan.name}</CardTitle>
                 <div className="mt-3 sm:mt-4">
@@ -104,9 +116,10 @@ export function PricingSection() {
                 <Button
                   className={`w-full ${plan.popular ? "bg-primary text-primary-foreground hover:bg-primary/90" : ""}`}
                   variant={plan.popular ? "default" : "outline"}
+                  disabled={plan.comingSoon}
                   size="lg"
                 >
-                  {plan.cta}
+                   {plan.comingSoon ? "Coming Soon" : plan.cta}
                 </Button>
               </CardContent>
             </Card>
